@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class BankAccount {
 
@@ -9,7 +10,9 @@ public class BankAccount {
 		this.customerId = customerId; 
 	}
 	
-	public void showMenu() {
+	public void showMenu(Scanner sc) {
+		int option = 0; 
+		
 		System.out.println(); 
 		System.out.println("************************************************************"); 
 		System.out.println(); 
@@ -24,5 +27,15 @@ public class BankAccount {
 		System.out.println("5. Exit"); 
 		System.out.println();
 		System.out.println("************************************************************"); 
+		
+		do {
+			System.out.println("\n"); 
+			System.out.print("Enter option: "); 
+			option = sc.nextInt(); 
+			sc.nextLine(); 
+			
+			System.out.println(option); 
+			
+		} while (option != 5); 
 	}
 }

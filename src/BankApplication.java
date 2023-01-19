@@ -4,7 +4,7 @@ public class BankApplication {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner sc = new Scanner(System.in); 
+		Scanner sc = new Scanner(System.in).reset(); 
 		
 		//Request customer Name and customerId
 		System.out.print("Please provide name: "); 
@@ -15,12 +15,12 @@ public class BankApplication {
 		int customerId = sc.nextInt(); 
 		sc.nextLine(); 
 		
-		sc.close(); 
-		
 		//Initialize Bank Account 
 		BankAccount account = new BankAccount(customerName, customerId); 
 		
-		account.showMenu();
+		account.showMenu(sc);
+		
+		sc.close(); 
 		
 	}
 
