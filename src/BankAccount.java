@@ -4,6 +4,8 @@ public class BankAccount {
 
 	private String customerName; 
 	private int customerId; 
+	private int balance; 
+	private int previousTransaction; 
 	
 	BankAccount(String customerName, int customerId){
 		this.customerName = customerName; 
@@ -11,19 +13,41 @@ public class BankAccount {
 	}
 	
 	public void checkBalance() {
-		System.out.println("Check Balance Method"); 
+		System.out.println("Balance : " + this.balance); 
 	}
 	
-	public void deposit() {
-		System.out.println("Deposit Amount"); 
+	public void deposit(int amount) {
+		if (amount >= 0) {
+			this.balance += amount; 
+			this.previousTransaction = amount; 
+			System.out.println("Your new balance is " + this.balance); 	
+		} else {
+			System.out.println("Cannot deposit a negative amount."); 
+		}
 	}
 	
-	public void withdrawl() {
-		System.out.println("Withdrawl Amount"); 
+	public void withdrawl(int amount) {
+		if (amount >= 0) {
+			if (amount < this.balance) {
+				this.balance -= amount; 
+				this.previousTransaction = -amount; 
+				System.out.println("Your new balance is " + this.balance); 	
+			} else {
+				System.out.println("Amount you would like to withdrawl exceeds the current account balance."); 
+			}
+		} else {
+			System.out.println("Cannot withdrawl a negative amount."); 
+		}
 	}
 	
 	public void previousTransaction() {
-		System.out.println("View Previous Transaction"); 
+		if (this.previousTransaction > 0) {
+			System.out.println("Deposited : " + Math.abs(this.previousTransaction)); 
+		} else if (this.previousTransaction < 0) {
+			System.out.println("Withdrawn : " + Math.abs(this.previousTransaction)); 
+		} else {
+			System.out.println("No transaction has occured."); 
+		}
 	}
 	
 	public void showMenu(Scanner sc) {
@@ -56,19 +80,29 @@ public class BankAccount {
 					this.checkBalance();
 					break; 
 				case 2: 
-					this.deposit();
+					System.out.print("Enter amount which you would like to deposit : "); 
+					int depositAmount = sc.nextInt(); 
+					System.out.println(); 
+					sc.nextLine(); 
+					this.deposit(depositAmount);
 					break; 
 				case 3: 
-					this.withdrawl(); 
+					System.out.print("Enter amount which you would like to withdrawl : ");
+					int withdrawlAmount = sc.nextInt(); 
+					System.out.println(); 
+					sc.nextLine(); 
+					this.withdrawl(withdrawlAmount); 
 					break;
 				case 4: 
 					this.previousTransaction(); 
+					break;
+				case 5: 
+					System.out.println("Thank you for using our services."); 
 					break; 
+				default: System.out.println("Invalid Option. Please choose a valid menu option."); 
 					
 			}
 			
 		} while (option != 5); 
-		
-		System.out.println("Thank you for using our services."); 
 	}
 }
