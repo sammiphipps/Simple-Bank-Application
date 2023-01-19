@@ -10,6 +10,22 @@ public class BankAccount {
 		this.customerId = customerId; 
 	}
 	
+	public void checkBalance() {
+		System.out.println("Check Balance Method"); 
+	}
+	
+	public void deposit() {
+		System.out.println("Deposit Amount"); 
+	}
+	
+	public void withdrawl() {
+		System.out.println("Withdrawl Amount"); 
+	}
+	
+	public void previousTransaction() {
+		System.out.println("View Previous Transaction"); 
+	}
+	
 	public void showMenu(Scanner sc) {
 		int option = 0; 
 		
@@ -34,8 +50,25 @@ public class BankAccount {
 			option = sc.nextInt(); 
 			sc.nextLine(); 
 			
-			System.out.println(option); 
+			switch(option) {
+			
+				case 1: 
+					this.checkBalance();
+					break; 
+				case 2: 
+					this.deposit();
+					break; 
+				case 3: 
+					this.withdrawl(); 
+					break;
+				case 4: 
+					this.previousTransaction(); 
+					break; 
+					
+			}
 			
 		} while (option != 5); 
+		
+		System.out.println("Thank you for using our services."); 
 	}
 }
